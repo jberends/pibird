@@ -11,13 +11,13 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 @app.route('/')
 def hello_world():
     commands = [
-        dict(url='/commands/play', name='Play MP3'),
-        dict(url='/commands/testvumeter', name='Test VU meter'),
-        dict(url='/commands/volume/0', name='Set volume 0%'),
-        dict(url='/commands/volume/25', name='Set volume 25%'),
-        dict(url='/commands/volume/50', name='Set volume 50%'),
-        dict(url='/commands/volume/75', name='Set volume 75%'),
-        dict(url='/commands/volume/100', name='Set volume 100%'),
+        dict(url='/commands/play', name='Play MP3', icon='fa-file-audio-o'),
+        dict(url='/commands/testvumeter', name='Test VU meter', icon='fa-flask'),
+        dict(url='/commands/volume/0', name='Set volume 0%', icon='fa-volume-off'),
+        dict(url='/commands/volume/25', name='Set volume 25%', icon='fa-volume-down'),
+        dict(url='/commands/volume/50', name='Set volume 50%', icon='fa-volume-down'),
+        dict(url='/commands/volume/75', name='Set volume 75%', icon='fa-volume-down'),
+        dict(url='/commands/volume/100', name='Set volume 100%', icon='fa-volume-up'),
     ]
 
     return render_template('index.t.html', commands=commands)

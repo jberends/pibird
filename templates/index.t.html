@@ -1,13 +1,22 @@
 {% extends 'base.t.html' %}
-{% block body %}
+{% block main %}
 
-    <h1>Welcome here</h1>
+    <h1>Welcome to pibird</h1>
+
+    <div class="alert alert-info">Pibird plays bird sounds on the raspberry pi with a Speaker pHAT</div>
 
     <h3>Commands available</h3>
 
-    <ul>
+    <ul class="fa-ul">
         {%  for command in commands %}
-        <li><a href="{{ command.get('url') }}">{{ command.name }}</a></li>
+        <li>
+            <a href="{{ command.url }}">
+                {% if command.get('icon') %}
+                    <i class="fa-li fa {{ command.icon }} fa-1g"></i>&nbsp;
+                {% endif %}
+                {{ command.name }}
+            </a>
+        </li>
         {%  endfor %}
     </ul>
 
