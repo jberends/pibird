@@ -7,6 +7,9 @@
           <mappings>
             <mapping deploy="/pibird" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="venv" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>

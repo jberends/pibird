@@ -1,0 +1,14 @@
+{% extends 'base.t.html' %}
+{% block body %}
+
+    <h1>Welcome here</h1>
+
+    <h3>Commands available</h3>
+
+    <ul>
+        {%  for command in commands %}
+        <li><a href="{{ command.get('url') }}">{{ command.name }}</a></li>
+        {%  endfor %}
+    </ul>
+
+{% endblock %}

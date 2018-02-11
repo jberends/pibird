@@ -3,5 +3,8 @@ Flask
 
 # for the soundstuff
 
+# leddriver
+sn3218
 
-sn3218  # leddriver
+# sound
+playsound
