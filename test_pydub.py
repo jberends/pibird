@@ -1,6 +1,9 @@
 from pydub import AudioSegment
 from pydub.playback import play
 
+# see: https://github.com/jiaaro/pydub
+
+
 if __name__ == '__main__':
     s = AudioSegment.from_mp3("static/sounds/Bird-singing-in-the-forest.mp3")
     sound1 = s[:10*1000]
@@ -12,3 +15,5 @@ if __name__ == '__main__':
     # easy way is to use the .fade_in() convenience method. note: -120dB is basically silent.
     fade_in_the_hard_way = sound1.fade(from_gain=-120.0, start=0, duration=6000)
     fade_out_the_hard_way = sound1.fade(to_gain=-120.0, end=0, duration=5000)
+
+    play(s)
