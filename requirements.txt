@@ -8,3 +8,5 @@ sn3218
 
 # sound
 playsound
+
+pydub
