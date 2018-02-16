@@ -1,0 +1,12 @@
+{% extends 'base.t.html' %}
+{% block main %}
+
+
+    <h1>Jobs {{ jobid }}</h1>
+
+    <ul>
+        <li><a href="/results/{{ jobid }}">See job status</a></li>
+        <li><a href="/cancel/{{ jobid }}">Cancel job </a></li>
+    </ul>
+
+{% endblock %}

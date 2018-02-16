@@ -7,6 +7,8 @@ Flask
 sn3218
 
 # sound
-playsound
-
 pydub
+
+# redis/async stuff
+redis
+rq

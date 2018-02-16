@@ -20,3 +20,7 @@ sudo apt install mpg321
 
 # additional stuff
 sudo apt install libav-tools libavcodec-extra ffmpeg
+sudo apt install redis-server
+
+# no virtual environment, use global
+pip3 install -r requirements.txt

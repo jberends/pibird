@@ -1,0 +1,14 @@
+{% extends 'base.t.html' %}
+{% block main %}
+
+    <h1>Play any of these files</h1>
+
+    <ul>
+        {% for mp3 in mp3s %}
+            <li><a href="/commands/playasync/{{ mp3 }}">Play {{ mp3 }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <pre>{{ mp3s }}</pre>
+
+{% endblock %}
