@@ -46,20 +46,17 @@ def main(**options):
 
     `*/15 * * * *  root  /path/to/script/top_of_the_hour.py --start 8 --end 21 --quarter`
     """
-    print(options)
-    print(sys.version_info)
-    print(os.listdir(MEDIA_PATH))
-
     now = datetime.now(tz=pytz.timezone('Europe/Amsterdam'))
+    print("___")
     print("___ running at: {}".format(now))
     hour = now.hour
     minute = now.minute
 
     is_top_of_the_hour = (minute + ACCURACY) % 60 <= 2 * ACCURACY
-    is_quarter = (minute + ACCURACY) % 15 <= 2 * ACCURACY
+    is_quarter_of_an_hour = (minute + ACCURACY) % 15 <= 2 * ACCURACY
     in_time_window = hour >= options.get('start', DEFAULT_START_HOUR) and hour <= options.get('end', DEFAULT_END_HOUR)
 
-    if is_top_of_the_hour and in_time_window:
+    if in_time_window and is_top_of_the_hour:
         # do the cow between 8 and 21 every top of the hour
 
         # correct for afternoon.
@@ -72,15 +69,15 @@ def main(**options):
             # when hour = 5 , the range will be provided: [0,1,2,3,4] (so 5 times, 5 is not in there)
             subprocess.call([CMD, os.path.join(MEDIA_PATH, random.choice(MEDIA_FILES))])
 
-    elif options.get('quarter', False) and is_quarter and in_time_window:
+    elif in_time_window and options.get('quarter', False) and is_quarter_of_an_hour:
         print("___ running quarter of the hour. Play sound 1 times")
         subprocess.call([CMD, os.path.join(MEDIA_PATH, random.choice(MEDIA_FILES))])
     elif not in_time_window:
-        print("___ not in time window between {}:00 and {}:00".format(options.get('start', DEFAULT_START_HOUR),
+        print("_!_ not in time window between {}:00 and {}:00".format(options.get('start', DEFAULT_START_HOUR),
                                                                       options.get('end', DEFAULT_END_HOUR)))
     else:
-        print("___ not top of the hour, nor quarter")
-
+        print("_!_ not top of the hour, nor quarter")
+    print("___ Done.")
 
 if __name__ == '__main__':
     sys.exit(main())
