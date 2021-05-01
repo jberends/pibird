@@ -111,7 +111,7 @@ def kill_jon(jobid):
     return 'jon cancelled {}'.format(jobid)
 
 
-def background_processing(s: int = 5):
+def background_processing(s = 5):
     print('halt .....')
     time.sleep(s)
     print('and go >>')
