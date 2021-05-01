@@ -23,13 +23,18 @@ CMD = "aplay"
 
 DEFAULT_START_HOUR = 8
 DEFAULT_END_HOUR = 21
+DEFAULT_VOLUME = 83
 ACCURACY = 5  # minutes accuracy before and after the top of the hour or quarter
 
 
 @click.command()
-@click.option('--start', default=DEFAULT_START_HOUR, help="Hour (0-24) to start the active time window")
-@click.option('--end', default=DEFAULT_END_HOUR, help="Hour (0-24) to end the active time window")
+@click.option('--start', default=DEFAULT_START_HOUR,
+              help="Hour (0-24) to start the active time window [default={}]".format(DEFAULT_START_HOUR))
+@click.option('--end', default=DEFAULT_END_HOUR,
+              help="Hour (0-24) to end the active time window [default={}]".format(DEFAULT_END_HOUR))
 @click.option('--quarter/--no-quarter', default=False, help="Run once on every quarter of an hour")
+@click.option('--volume', type=click.IntRange(0, 100, clamp=True), default=DEFAULT_VOLUME,
+              help="percentage volume to run cow (0-100) [default={}%]".format(DEFAULT_VOLUME))
 def main(**options):
     """This small python scripts runs wav files like your local churchclock.
 
@@ -56,6 +61,9 @@ def main(**options):
     is_quarter_of_an_hour = (minute + ACCURACY) % 15 <= 2 * ACCURACY
     in_time_window = hour >= options.get('start', DEFAULT_START_HOUR) and hour <= options.get('end', DEFAULT_END_HOUR)
 
+    if in_time_window and options.get('volume', DEFAULT_VOLUME):
+        subprocess.call(['amixer', 'sset', 'Master', '{}%'.format(options.get('volume', DEFAULT_VOLUME)), '--quiet'])
+
     if in_time_window and is_top_of_the_hour:
         # do the cow between 8 and 21 every top of the hour
 
@@ -78,6 +86,7 @@ def main(**options):
     else:
         print("_!_ not top of the hour, nor quarter")
     print("___ Done.")
+
 
 if __name__ == '__main__':
     sys.exit(main())
