@@ -27,9 +27,9 @@ ACCURACY = 5  # minutes accuracy before and after the top of the hour or quarter
 
 
 @click.command()
-@click.option('--start', default=DEFAULT_START_HOUR, help="hour to start time window to be active")
-@click.option('--end', default=DEFAULT_END_HOUR, help="hour to end time window to be active")
-@click.option('--quarter/--no-quarter', default=False, help="run once on every quarter of an hour")
+@click.option('--start', default=DEFAULT_START_HOUR, help="Hour (0-24) to start the active time window")
+@click.option('--end', default=DEFAULT_END_HOUR, help="Hour (0-24) to end the active time window")
+@click.option('--quarter/--no-quarter', default=False, help="Run once on every quarter of an hour")
 def main(**options):
     """This small python scripts runs wav files like your local churchclock.
 
