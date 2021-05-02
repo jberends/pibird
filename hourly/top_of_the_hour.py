@@ -20,6 +20,7 @@ MEDIA_FILES = [
     "koe_4.wav",
     "koe_5.wav",
 ]
+MEDIA_FILE_QUARTER = "koe_15mins.wav"
 CMD = "aplay"
 
 DEFAULT_START_HOUR = 8
@@ -82,7 +83,7 @@ def main(**options):
 
     elif in_time_window and options.get('quarter', False) and is_quarter_of_an_hour:
         print("___ running quarter of the hour. Play sound 1 times")
-        subprocess.call([CMD, os.path.join(MEDIA_PATH, random.choice(MEDIA_FILES))])
+        subprocess.call([CMD, os.path.join(MEDIA_PATH, MEDIA_FILE_QUARTER)])
     elif not in_time_window:
         print("_!_ not in time window between {}:00 and {}:00".format(options.get('start', DEFAULT_START_HOUR),
                                                                       options.get('end', DEFAULT_END_HOUR)))
