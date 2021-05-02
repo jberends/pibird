@@ -4,6 +4,7 @@ import os
 import random
 import subprocess
 import sys
+import time
 from datetime import datetime
 
 import click
@@ -24,6 +25,7 @@ CMD = "aplay"
 DEFAULT_START_HOUR = 8
 DEFAULT_END_HOUR = 21
 DEFAULT_VOLUME = 83
+DELAY = 0.8  # seconds delay between the consequetive sound files
 ACCURACY = 5  # minutes accuracy before and after the top of the hour or quarter
 
 
@@ -76,6 +78,7 @@ def main(**options):
         for x in range(0, hour):
             # when hour = 5 , the range will be provided: [0,1,2,3,4] (so 5 times, 5 is not in there)
             subprocess.call([CMD, os.path.join(MEDIA_PATH, random.choice(MEDIA_FILES))])
+            time.sleep(DELAY)
 
     elif in_time_window and options.get('quarter', False) and is_quarter_of_an_hour:
         print("___ running quarter of the hour. Play sound 1 times")
